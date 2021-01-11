@@ -10,9 +10,12 @@ app.use(express.json())
 app.use(require('./utils/authorizer.js'))
 
 app.get('/:repo', (req, res) => {
-  const { params, query } = req
+  const { params, query, ip } = req
   const { repo } = params
   const { branch } = query
+  console.log('***************')
+  console.log(`Received a synchronization request from ${ip}`)
+  console.log('***************')
   sync(repo, branch)
   res.json({ message: `Successfully synchronized kaskadi/${repo}!` })
 })
