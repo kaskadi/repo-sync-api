@@ -9,6 +9,8 @@ require('dotenv').config()
 app.use(express.json())
 app.use(require('./utils/authorizer.js'))
 
+app.set('trust proxy', true) // this allows us to retrieve the client IP via req.ip
+
 app.get('/:repo', (req, res) => {
   const { params, query, ip } = req
   const { repo } = params
