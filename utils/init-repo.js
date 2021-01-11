@@ -1,7 +1,8 @@
 const exec = require('./exec.js')
+const log = require('./logger.js')
 
 module.exports = (deployPath) => {
-  console.log('INFO: first synchronization request detected, creating deployment folder...')
+  log('first synchronization request detected, creating deployment folder...', 'info')
   exec(`mkdir ${deployPath}`)
-  console.log(`SUCCESS: deployment folder created @ ${deployPath}`)
+  log(`deployment folder created @ ${deployPath}`, 'success')
 }

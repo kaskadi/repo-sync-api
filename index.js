@@ -3,6 +3,7 @@ const app = express()
 const port = 4000
 
 const sync = require('./utils/sync.js')
+const log = require('./utils/logger.js')
 
 require('dotenv').config()
 
@@ -23,5 +24,5 @@ app.get('/:repo', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Remote sync API online @ http://localhost:${port}`)
+  log(`Remote sync API online @ http://localhost:${port}`)
 })

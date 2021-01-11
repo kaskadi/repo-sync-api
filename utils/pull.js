@@ -1,8 +1,9 @@
 const exec = require('./exec.js')
+const log = require('./logger.js')
 
 module.exports = (repo, branch, uri, wd) => {
   process.chdir(wd)
-  console.log(`INFO: synchronizing ${branch} branch of ${repo} repository...`)
+  log(`synchronizing ${branch} branch of ${repo} repository...`, 'info')
   exec(`git pull ${uri} ${branch}`)
-  console.log(`SUCCESS: successfully synchronized ${branch} branch of ${repo} repository`)
+  log(`successfully synchronized ${branch} branch of ${repo} repository`, 'success')
 }

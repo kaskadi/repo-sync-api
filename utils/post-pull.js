@@ -1,28 +1,29 @@
 const exec = require('./exec.js')
+const log = require('./logger.js')
 const { existsSync, readFileSync } = require('fs')
 
 const postPullHandlers = {
   js: () => {
-    console.log('INFO: installing all npm dependencies...')
+    log('installing all npm dependencies...', 'info')
     exec('npm i')
-    console.log('SUCCESS: successfully installed all dependencies!')
+    log('successfully installed all dependencies!', 'success')
     const { scripts } = JSON.parse(readFileSync('package.json', 'utf8'))
     if (scripts.build) {
-      console.log('INFO: this project seems to contain a build script, executing it...')
+      log('this project seems to contain a build script, executing it...', 'info')
       exec('npm run build')
-      console.log('SUCCESS: build script successfully executed!')
+      log('build script successfully executed!', 'success')
     }
   }
 }
 
 module.exports = (wd) => {
   process.chdir(wd)
-  console.log('INFO: checking repository type...')
+  log('checking repository type...', 'info')
   const repoType = checkRepoType()
   if (!postPullHandlers[repoType]) {
-    console.log('INFO: this repository type does have any associated post-pull operations to perform')
+    log('this repository type does have any associated post-pull operations to perform', 'info')
   } else {
-    console.log(`INFO: repository seems to be of type ${repoType}...`)
+    log(`repository seems to be of type ${repoType}...`, 'info')
     postPullHandlers[repoType]()
   }
 }

@@ -1,14 +1,15 @@
 const exec = require('./exec.js')
+const log = require('./logger.js')
 const { existsSync } = require('fs')
 
 module.exports = (wd) => {
   process.chdir(wd)
-  console.log('INFO: scanning for common static/public folder to allow Nginx access...')
+  log('scanning for common static/public folder to allow Nginx access...', 'info')
   const folders = ['public', 'build']
   for (const folder of folders) {
     updateOwningGrp(folder)
   }
-  console.log('SUCCESS: successfully scanned folders!')
+  log('successfully scanned folders!', 'success')
 }
 
 function updateOwningGrp (folder) {
