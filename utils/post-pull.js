@@ -21,7 +21,7 @@ module.exports = (wd) => {
   log('checking repository type...', 'info')
   const repoType = checkRepoType()
   if (!postPullHandlers[repoType]) {
-    log('this repository type does have any associated post-pull operations to perform', 'info')
+    log('this repository type does not have any associated post-pull operations to perform', 'info')
   } else {
     log(`repository seems to be of type ${repoType}...`, 'info')
     postPullHandlers[repoType]()
