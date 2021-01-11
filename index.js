@@ -17,12 +17,12 @@ app.get('/:repo', (req, res) => {
   const { repo } = params
   const { branch } = query
   console.log('***************')
-  console.log(`Received a synchronization request from ${ip}`)
+  log(`Received a synchronization request from ${ip}`)
   console.log('***************')
   sync(repo, branch)
   res.json({ message: `Successfully synchronized kaskadi/${repo}!` })
 })
 
 app.listen(port, () => {
-  log(`Remote sync API online @ http://localhost:${port}`)
+  log(`Remote sync API started @ http://localhost:${port}`)
 })
