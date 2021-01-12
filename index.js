@@ -2,13 +2,13 @@ const express = require('express')
 const app = express()
 const port = 4000
 
-const sync = require('./utils/sync.js')
+const sync = require('./src/sync.js')
 const log = require('./utils/logger.js')
 
 require('dotenv').config()
 
 app.use(express.json())
-app.use(require('./utils/authorizer.js'))
+app.use(require('./middlewares/authorizer.js'))
 
 app.set('trust proxy', true) // this allows us to retrieve the client IP via req.ip
 

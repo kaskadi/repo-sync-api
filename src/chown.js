@@ -1,5 +1,5 @@
-const exec = require('./exec.js')
-const log = require('./logger.js')
+const exec = require('../utils/exec.js')
+const log = require('../utils/logger.js')
 const { existsSync } = require('fs')
 
 module.exports = (wd) => {
