@@ -5,7 +5,7 @@ const log = require('../utils/logger.js')
 const getWd = require('./get-wd.js')
 
 module.exports = (repoData) => {
-  process.chdir(getWd(repoData, 'branch'))
+  process.chdir(getWd(repoData, { lvl: 'branch' }))
   log('scanning for common static/public folder to allow Nginx access...', 'info')
   const folders = ['public', 'build']
   for (const folder of folders) {

@@ -8,8 +8,7 @@ module.exports = (repoData) => {
   const { repo, branch } = repoData
   const uri = `https://${process.env.GH_OAUTH_TOKEN}:x-oauth-basic@github.com/${process.env.ORG}/${repo}.git`
   const cwd = process.cwd()
-  const path = `${repo}/${branch}`
-  const structureData = buildStructure(repoData, path)
+  const structureData = buildStructure(repoData)
   if (!structureData.pop().isCreated) {
     clone(repoData, uri)
     if (branch !== 'master') {

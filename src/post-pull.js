@@ -19,7 +19,7 @@ const postPullHandlers = {
 }
 
 module.exports = (repoData) => {
-  process.chdir(getWd(repoData, 'branch'))
+  process.chdir(getWd(repoData, { lvl: 'branch' }))
   log('checking repository type...', 'info')
   const repoType = checkRepoType()
   if (!postPullHandlers[repoType]) {

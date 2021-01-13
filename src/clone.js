@@ -5,7 +5,7 @@ const getWd = require('./get-wd.js')
 
 module.exports = (repoData, uri) => {
   const { repo, branch } = repoData
-  const path = getWd(repoData, 'branch')
+  const path = getWd(repoData, { lvl: 'branch' })
   const parentPath = path.split('/').slice(0, -1).join('/')
   process.chdir(parentPath) // we want to be in the parent folder when cloning
   log(`folder for ${branch} branch of ${repo} repository does not exists, creating...`, 'info')

@@ -3,10 +3,10 @@ const exec = require('../utils/exec.js')
 const log = require('../utils/logger.js')
 const getWd = require('./get-wd.js')
 
-module.exports = (repoData, path) => {
+module.exports = (repoData) => {
   process.chdir(getWd(repoData)) // goes to root
   log('Checking folder structure before synchronizing repository data...', 'info')
-  const structureData = checkStructure(path)
+  const structureData = checkStructure(getWd(repoData, { lvl: 'branch' }))
   log('Folder structure successfully checked!', 'success')
   log('Creating missing folders in structure before synchronizing repository data...', 'info')
   createFolders(structureData)
