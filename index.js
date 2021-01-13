@@ -29,8 +29,9 @@ app.get('/:repo', (req, res) => {
 })
 
 app.listen(port, () => {
+  console.log('***************')
+  log('Starting repository synchronization API...', 'info')
+  console.log('***************')
   init()
-  console.log('*_* Live reload should work now! *_*')
-  console.log('Testing live reload again...')
   log(`Remote sync API started @ http://localhost:${port}`)
 })
