@@ -3,6 +3,7 @@ const app = express()
 const port = 4000
 
 const log = require('./utils/logger.js')
+const init = require('./utils/init.js')
 const sync = require('./src/sync.js')
 const deploy = require('./src/deploy.js')
 
@@ -28,6 +29,7 @@ app.get('/:repo', (req, res) => {
 })
 
 app.listen(port, () => {
+  init()
   console.log('*_* Live reload should work now! *_*')
   console.log('Testing live reload again...')
   log(`Remote sync API started @ http://localhost:${port}`)
