@@ -20,7 +20,7 @@ app.get('/:repo', (req, res) => {
   let { branch } = query
   branch = branch || 'master'
   console.log('***************')
-  log(`Received a synchronization request from ${ip}`)
+  log(`Received a synchronization request from ${ip} for ${branch} branch of ${repo}...`)
   console.log('***************')
   const repoData = { repo, branch }
   sync(repoData)
