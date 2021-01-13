@@ -9,6 +9,4 @@ module.exports = (repoData) => {
   buildStructure(repoData, false)
   log(`Moving all files into deployment folder at ${deployDir}`, 'info')
   exec(`rsync -a ${tmpDir}/ ${deployDir}/`)
-  exec(`rm -r -f ${tmpDir}`) // cleanup
-  log('Successfully deployed project!', 'success')
 }
