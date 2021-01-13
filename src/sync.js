@@ -3,6 +3,7 @@ const clone = require('./clone.js')
 const pull = require('./pull.js')
 const postPull = require('./post-pull.js')
 const chown = require('./chown.js')
+const deploy = require('./deploy')
 
 module.exports = (repoData) => {
   const { repo, branch } = repoData
@@ -19,5 +20,6 @@ module.exports = (repoData) => {
   }
   postPull(repoData)
   chown(repoData)
+  deploy(repoData)
   process.chdir(cwd)
 }
