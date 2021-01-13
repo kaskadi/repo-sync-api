@@ -2,8 +2,9 @@ const express = require('express')
 const app = express()
 const port = 4000
 
-const sync = require('./src/sync.js')
 const log = require('./utils/logger.js')
+const sync = require('./src/sync.js')
+const deploy = require('./src/deploy.js')
 
 require('dotenv').config()
 
@@ -20,8 +21,10 @@ app.get('/:repo', (req, res) => {
   console.log('***************')
   log(`Received a synchronization request from ${ip}`)
   console.log('***************')
-  sync({ repo, branch })
+  const repoData = { repo, branch }
+  sync(repoData)
   res.json({ message: `Successfully synchronized kaskadi/${repo}!` })
+  deploy(repoData)
 })
 
 app.listen(port, () => {
