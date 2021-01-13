@@ -33,5 +33,6 @@ app.listen(port, () => {
   log('Starting repository synchronization API...', 'info')
   console.log('***************')
   init()
+  console.log('Testing live reload *_*')
   log(`Remote sync API started @ http://localhost:${port}`)
 })
