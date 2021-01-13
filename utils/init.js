@@ -10,7 +10,7 @@ module.exports = () => {
   if (!existsSync(tmpDir)) {
     exec(`mkdir ${tmpDir}`)
   }
-  const dirs = readdirSync(tmpDir)
+  const dirs = readdirSync(tmpDir).map(dir => `${tmpDir}/${dir}`)
   cleanup(dirs)
   log('Temporary directory ready!', 'success')
 }
