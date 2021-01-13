@@ -2,7 +2,7 @@ const { existsSync } = require('fs')
 
 const exec = require('../utils/exec.js')
 const log = require('../utils/logger.js')
-const getWd = require('./get-wd.js')
+const getWd = require('../utils/get-wd.js')
 
 module.exports = (repoData) => {
   process.chdir(getWd(repoData, { lvl: 'branch' }))
