@@ -1,9 +1,11 @@
-const exec = require('../utils/exec.js')
-const log = require('../utils/logger.js')
 const { existsSync } = require('fs')
 
-module.exports = (wd) => {
-  process.chdir(wd)
+const exec = require('../utils/exec.js')
+const log = require('../utils/logger.js')
+const getWd = require('./get-wd.js')
+
+module.exports = (repoData) => {
+  process.chdir(getWd(repoData, 'branch'))
   log('scanning for common static/public folder to allow Nginx access...', 'info')
   const folders = ['public', 'build']
   for (const folder of folders) {

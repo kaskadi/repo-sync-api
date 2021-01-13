@@ -15,11 +15,12 @@ app.set('trust proxy', true) // this allows us to retrieve the client IP via req
 app.get('/:repo', (req, res) => {
   const { params, query, ip } = req
   const { repo } = params
-  const { branch } = query
+  let { branch } = query
+  branch = branch || 'master'
   console.log('***************')
   log(`Received a synchronization request from ${ip}`)
   console.log('***************')
-  sync(repo, branch)
+  sync({ repo, branch })
   res.json({ message: `Successfully synchronized kaskadi/${repo}!` })
 })
 

@@ -1,6 +1,8 @@
+const { existsSync, readFileSync } = require('fs')
+
 const exec = require('../utils/exec.js')
 const log = require('../utils/logger.js')
-const { existsSync, readFileSync } = require('fs')
+const getWd = require('./get-wd.js')
 
 const postPullHandlers = {
   js: () => {
@@ -16,8 +18,8 @@ const postPullHandlers = {
   }
 }
 
-module.exports = (wd) => {
-  process.chdir(wd)
+module.exports = (repoData) => {
+  process.chdir(getWd(repoData, 'branch'))
   log('checking repository type...', 'info')
   const repoType = checkRepoType()
   if (!postPullHandlers[repoType]) {

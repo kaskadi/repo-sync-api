@@ -1,12 +1,15 @@
 const exec = require('../utils/exec.js')
 const log = require('../utils/logger.js')
 
-module.exports = (repo, branch, uri, wd) => {
-  const dirParts = wd.split('/')
-  const parentDir = dirParts.slice(0, -1).join('/') // we want to be in the parent folder when cloning
-  process.chdir(parentDir)
+const getWd = require('./get-wd.js')
+
+module.exports = (repoData, uri) => {
+  const { repo, branch } = repoData
+  const path = getWd(repoData, 'branch')
+  const parentPath = path.split('/').slice(0, -1).join('/')
+  process.chdir(parentPath) // we want to be in the parent folder when cloning
   log(`folder for ${branch} branch of ${repo} repository does not exists, creating...`, 'info')
   exec(`git clone ${uri}`)
-  exec(`mv ${parentDir}/${repo} ${parentDir}/${dirParts.slice(-1)[0]}`)
+  exec(`mv ${parentPath}/${repo} ${path}`)
   log(`folder for ${branch} branch of ${repo} repository successfully created!`, 'success')
 }
