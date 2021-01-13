@@ -1,14 +1,16 @@
 const { existsSync } = require('fs')
 const exec = require('../utils/exec.js')
 const log = require('../utils/logger.js')
-const getWd = require('./get-wd.js')
+const getWd = require('../utils/get-wd.js')
 
-module.exports = (repoData) => {
-  process.chdir(getWd(repoData)) // goes to root
-  log('Checking folder structure before synchronizing repository data...', 'info')
-  const structureData = checkStructure(getWd(repoData, { lvl: 'branch' }))
-  log('Folder structure successfully checked!', 'success')
-  log('Creating missing folders in structure before synchronizing repository data...', 'info')
+module.exports = (repoData, isTmp = true) => {
+  const { repo, branch } = repoData
+  const rootPath = getWd(repoData, { isTmp })
+  process.chdir(rootPath)
+  log(`Checking folder structure in ${rootPath} before synchronizing repository data...`, 'info')
+  const structureData = checkStructure(`${repo}/${branch}`)
+  log(`Folder structure successfully checked in ${rootPath}!`, 'success')
+  log(`Creating missing folders in ${rootPath} before synchronizing repository data...`, 'info')
   createFolders(structureData)
   log('Successfully created all missing folders!', 'success')
   return structureData
