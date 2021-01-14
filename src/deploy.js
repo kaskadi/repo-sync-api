@@ -9,6 +9,6 @@ module.exports = (repoData) => {
   const tmpDir = getWd(repoData, { lvl: 'branch' })
   buildStructure(repoData, false)
   log(`Moving all files into deployment folder at ${deployDir}`, 'info')
-  exec(`rsync -avz ${tmpDir}/ ${deployDir}/`, true)
+  exec(`rsync -avz ${tmpDir}/ ${deployDir}`, true)
   cleanup([getWd(repoData, { lvl: 'repo' })], true)
 }
