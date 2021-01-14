@@ -7,6 +7,6 @@ module.exports = {
     treekill: false, // do not kill detached child processes
     exec_mode: 'cluster',
     instances: 1,
-    listen_timeout: 2000 // wait 3s before reloading app when listening (to avoid multiple restart when updating repo)
+    listen_timeout: 5000 // wait 5s before reloading app when listening (to avoid multiple restart when updating repo)
   }]
 }
