@@ -35,5 +35,3 @@ app.listen(port, () => {
   init()
   log(`Remote sync API started @ http://localhost:${port}`)
 })
-
-// testing
