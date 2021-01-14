@@ -30,6 +30,7 @@ app.get('/:repo', (req, res) => {
 
 app.listen(port, () => {
   console.log('***************')
+  console.log('testing!')
   log('Starting repository synchronization API...', 'info')
   console.log('***************')
   init()
