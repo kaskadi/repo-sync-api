@@ -28,8 +28,6 @@ app.get('/:repo', (req, res) => {
   deploy(repoData)
 })
 
-console.log('Hello')
-
 app.listen(port, () => {
   console.log('***************')
   log('Starting repository synchronization API...', 'info')
