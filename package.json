@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js && pm2 save",
-    "restart": "pm2 restart ecosystem.config.js",
+    "start": "pm2 delete ecosystem.config.js && pm2 save && kaskadi service install -n repo-sync-api -e $PWD/index.js",
+    "restart": "systemctl --user restart repo-sync-api",
     "start:dev": "nodemon index.js"
   },
   "repository": {
@@ -26,6 +26,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "kaskadi-cli": "^1.8.2",
     "pm2": "^4.5.1"
   },
   "devDependencies": {
