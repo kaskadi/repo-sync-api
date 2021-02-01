@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "kaskadi service uninstall -n repo-sync-api && kaskadi service install -n repo-sync-api -e $PWD/index.js -r",
-    "restart": "systemctl --user restart repo-sync-api",
+    "prestart": "kaskadi service install -n repo-sync-api -e $PWD/index.js -r",
+    "start": "systemctl --user restart repo-sync-api",
     "start:dev": "nodemon index.js"
   },
   "repository": {
