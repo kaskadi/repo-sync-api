@@ -2,12 +2,13 @@ const express = require('express')
 const app = express()
 const port = 4000
 
+const { join } = require('path')
 const log = require('./utils/logger.js')
 const init = require('./utils/init.js')
 const sync = require('./src/sync.js')
 const deploy = require('./src/deploy.js')
 
-require('dotenv').config()
+require('dotenv').config({ path: join(__dirname, '.env') })
 
 app.use(express.json())
 app.use(require('./middlewares/authorizer.js'))
